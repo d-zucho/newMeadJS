@@ -9,8 +9,14 @@ window.addEventListener('keypress', (e) => {
 })
 
 const render = () => {
-  puzzleEl.textContent = game1.puzzle
+  puzzleEl.innerHTML = ''
   guessesEl.textContent = game1.statusMessage
+
+  game1.puzzle.split('').forEach((letter) => {
+    const letterEl = document.createElement('span')
+    letterEl.textContent = letter
+    puzzleEl.appendChild(letterEl)
+  })
 }
 
 const startGame = async () => {
@@ -31,13 +37,13 @@ getPuzzle('2')
     console.log(`Error: ${err}`)
   })
 
-getCurrentCountry()
-  .then((country) => {
-    console.log(country.name)
-  })
-  .catch((error) => {
-    console.log(error)
-  })
+// getCurrentCountry()
+//   .then((country) => {
+//     console.log(country.name)
+//   })
+//   .catch((error) => {
+//     console.log(error)
+//   })
 
 /**
  * - use getLocation to get country code
